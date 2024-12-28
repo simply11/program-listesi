@@ -1,0 +1,61 @@
+<form [formGroup]="programForm" (ngSubmit)="onSubmit()" class="form-container">
+  <div class="form-field">
+    <label for="programIsmi">Program İsmi:</label>
+    <input id="programIsmi" type="text" formControlName="programIsmi">
+    <div class="error-message" *ngIf="isFieldInvalid('programIsmi')">
+      {{ getErrorMessage('programIsmi') }}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="programLink">Program Link:</label>
+    <input id="programLink" type="text" formControlName="programLink">
+    <div class="error-message" *ngIf="isFieldInvalid('programLink')">
+      {{ getErrorMessage('programLink') }}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="email">E-Mail:</label>
+    <input id="email" type="email" formControlName="email">
+    <div class="error-message" *ngIf="isFieldInvalid('email')">
+      {{ getErrorMessage('email') }}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="sifre">Şifre:</label>
+    <input id="sifre" type="text" formControlName="sifre">
+    <div class="error-message" *ngIf="isFieldInvalid('sifre')">
+      {{ getErrorMessage('sifre') }}
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="accountSekli">Account Şekli:</label>
+    <input id="accountSekli" type="text" formControlName="accountSekli">
+  </div>
+
+  <div class="form-field">
+    <label for="ucretli">Ücretli:</label>
+    <input id="ucretli" type="checkbox" formControlName="ucretli">
+  </div>
+
+  <div class="form-field" *ngIf="showKartNo">
+    <label for="kartNo">Kart No:</label>
+    <input 
+      id="kartNo" 
+      type="text" 
+      formControlName="kartNo"
+      maxlength="4"
+      placeholder="Son 4 hane">
+    <div class="hint">Sadece son 4 haneyi giriniz</div>
+  </div>
+
+  <div class="form-field">
+    <label for="bitisTarihi">Bitiş Tarihi:</label>
+    <input id="bitisTarihi" type="date" formControlName="bitisTarihi">
+  </div>
+
+  <button type="submit" [disabled]="!programForm.valid">Kaydet</button>
+</form>

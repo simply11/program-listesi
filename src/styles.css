@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* SweetAlert2 özelleştirmeleri */
+.swal2-popup {
+  font-family: inherit;
+  border-radius: 8px;
+}
+
+.swal2-title {
+  font-size: 1.5rem !important;
+}
+
+.swal2-text {
+  font-size: 1rem !important;
+}
+
+.swal2-confirm {
+  font-weight: 500 !important;
+}
+
+.swal2-cancel {
+  font-weight: 500 !important;
+}

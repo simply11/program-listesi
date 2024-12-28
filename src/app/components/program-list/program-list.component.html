@@ -1,0 +1,66 @@
+<div class="list-container">
+  <div class="list-header">
+    <h1>Program Listesi</h1>
+    
+    <div class="header-actions">
+      <button class="btn btn-success" (click)="navigateToForm()">
+        + Yeni Program Ekle
+      </button>
+
+      <div class="search-box">
+        <input 
+          type="text" 
+          placeholder="Programlarda ara..." 
+          (input)="onSearch($event)"
+          [value]="searchTerm"
+        >
+      </div>
+
+      <button class="btn btn-primary" (click)="exportData()">
+        Verileri İndir
+      </button>
+      
+      <label class="btn btn-secondary">
+        Verileri Yükle
+        <input type="file" accept=".json" (change)="importData($event)" hidden>
+      </label>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th (click)="sortBy('programIsmi')">Program İsmi ↕</th>
+        <th (click)="sortBy('programLink')">Link ↕</th>
+        <th (click)="sortBy('email')">E-Mail ↕</th>
+        <th (click)="sortBy('sifre')">Şifre ↕</th>
+        <th (click)="sortBy('accountSekli')">Account Şekli ↕</th>
+        <th (click)="sortBy('ucretli')">Ücretli ↕</th>
+        <th (click)="sortBy('kartNo')">Kart No ↕</th>
+        <th (click)="sortBy('bitisTarihi')">Bitiş Tarihi ↕</th>
+        <th>İşlemler</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let program of filteredProgramlar; let i = index">
+        <td>{{program.programIsmi}}</td>
+        <td>{{program.programLink}}</td>
+        <td>{{program.email}}</td>
+        <td>{{program.sifre}}</td>
+        <td>{{program.accountSekli}}</td>
+        <td>{{program.ucretli ? 'Evet' : 'Hayır'}}</td>
+        <td>{{formatKartNo(program.kartNo)}}</td>
+        <td>{{program.bitisTarihi}}</td>
+        <td class="actions">
+          <button class="edit-btn" (click)="editProgram(program, i)">Düzenle</button>
+          <button class="delete-btn" (click)="deleteProgram(i)">Sil</button>
+        </td>
+      </tr>
+      <tr *ngIf="filteredProgramlar.length === 0">
+        <td colspan="9" class="no-data">
+          {{ searchTerm ? 'Arama sonucu bulunamadı' : 'Henüz program eklenmemiş' }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
