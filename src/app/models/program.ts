@@ -7,6 +7,7 @@ export interface Program {
   ucretli: boolean | string;
   bitisTarihi: string;
   kartNo?: string;
+  periyot: string;
 }
 
 // Düzenleme için genişletilmiş interface

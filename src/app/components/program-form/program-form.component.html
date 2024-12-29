@@ -57,5 +57,18 @@
     <input id="bitisTarihi" type="date" formControlName="bitisTarihi">
   </div>
 
+  <div class="form-field">
+    <label for="periyot">Periyot:</label>
+    <select id="periyot" formControlName="periyot" class="form-control">
+      <option value="">Periyot Seçiniz</option>
+      <option *ngFor="let option of periyotSecenekleri" [value]="option.value">
+        {{option.label}}
+      </option>
+    </select>
+    <div class="error-message" *ngIf="isFieldInvalid('periyot')">
+      {{ getErrorMessage('periyot') }}
+    </div>
+  </div>
+
   <button type="submit" [disabled]="!programForm.valid">Kaydet</button>
 </form>

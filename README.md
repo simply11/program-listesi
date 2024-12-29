@@ -1,2 +1,2 @@
 # program-listesi
- Program listesi uygulaması v1.0
+Program listesi uygulaması v1.2.0

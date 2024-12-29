@@ -17,6 +17,12 @@ export class ProgramFormComponent implements OnInit {
   programForm: FormGroup;
   editMode = false;
   editIndex: number | null = null;
+  
+  // Periyot seçeneklerini tanımlayalım
+  periyotSecenekleri = [
+    { value: 'Aylık', label: 'Aylık' },
+    { value: 'Yıllık', label: 'Yıllık' }
+  ];
 
   constructor(
     private fb: FormBuilder,
@@ -31,7 +37,8 @@ export class ProgramFormComponent implements OnInit {
       accountSekli: [''],
       ucretli: [false],
       bitisTarihi: [''],
-      kartNo: ['']
+      kartNo: [''],
+      periyot: ['', Validators.required]
     });
   }
 
@@ -79,7 +86,8 @@ export class ProgramFormComponent implements OnInit {
         ucretli: formValue.ucretli,
         bitisTarihi: formValue.bitisTarihi ? 
           new Date(formValue.bitisTarihi).toLocaleDateString('tr-TR') : '',
-        kartNo: formValue.ucretli ? formValue.kartNo : ''
+        kartNo: formValue.ucretli ? formValue.kartNo : '',
+        periyot: formValue.periyot
       };
 
       if (this.editMode && this.editIndex !== null) {

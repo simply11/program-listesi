@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <table>
+  <table class="table">
     <thead>
       <tr>
         <th (click)="sortBy('programIsmi')">Program İsmi ↕</th>
@@ -38,6 +38,7 @@
         <th (click)="sortBy('ucretli')">Ücretli ↕</th>
         <th (click)="sortBy('kartNo')">Kart No ↕</th>
         <th (click)="sortBy('bitisTarihi')">Bitiş Tarihi ↕</th>
+        <th>Periyot</th>
         <th>İşlemler</th>
       </tr>
     </thead>
@@ -51,6 +52,7 @@
         <td>{{program.ucretli ? 'Evet' : 'Hayır'}}</td>
         <td>{{formatKartNo(program.kartNo)}}</td>
         <td>{{program.bitisTarihi}}</td>
+        <td>{{ program.periyot }}</td>
         <td class="actions">
           <button class="edit-btn" (click)="editProgram(program, i)">Düzenle</button>
           <button class="delete-btn" (click)="deleteProgram(i)">Sil</button>
