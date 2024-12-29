@@ -112,4 +112,13 @@ export class ProgramFormComponent implements OnInit {
   get showKartNo() {
     return this.programForm.get('ucretli')?.value;
   }
+
+  ucretliChanged(event: any) {
+    if (!event.target.checked) {
+      this.programForm.patchValue({
+        periyot: '',
+        kartNo: ''
+      });
+    }
+  }
 }

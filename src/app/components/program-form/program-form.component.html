@@ -1,74 +1,71 @@
-<form [formGroup]="programForm" (ngSubmit)="onSubmit()" class="form-container">
-  <div class="form-field">
-    <label for="programIsmi">Program İsmi:</label>
-    <input id="programIsmi" type="text" formControlName="programIsmi">
-    <div class="error-message" *ngIf="isFieldInvalid('programIsmi')">
-      {{ getErrorMessage('programIsmi') }}
-    </div>
-  </div>
+<div class="form-wrapper">
+  <div class="form-container">
+    <h2 class="form-title">Program Bilgileri</h2>
+    <form [formGroup]="programForm" (ngSubmit)="onSubmit()">
+      <!-- Program İsmi -->
+      <div class="form-field">
+        <label for="programIsmi" class="field-label">Program İsmi:</label>
+        <input type="text" class="field-input" id="programIsmi" formControlName="programIsmi" placeholder="Program ismini giriniz">
+      </div>
 
-  <div class="form-field">
-    <label for="programLink">Program Link:</label>
-    <input id="programLink" type="text" formControlName="programLink">
-    <div class="error-message" *ngIf="isFieldInvalid('programLink')">
-      {{ getErrorMessage('programLink') }}
-    </div>
-  </div>
+      <!-- Program Link -->
+      <div class="form-field">
+        <label for="programLink" class="field-label">Program Link:</label>
+        <input type="text" class="field-input" id="programLink" formControlName="programLink" placeholder="Program linkini giriniz">
+      </div>
 
-  <div class="form-field">
-    <label for="email">E-Mail:</label>
-    <input id="email" type="email" formControlName="email">
-    <div class="error-message" *ngIf="isFieldInvalid('email')">
-      {{ getErrorMessage('email') }}
-    </div>
-  </div>
+      <!-- E-Mail -->
+      <div class="form-field">
+        <label for="email" class="field-label">E-Mail:</label>
+        <input type="email" class="field-input" id="email" formControlName="email" placeholder="E-mail adresini giriniz">
+      </div>
 
-  <div class="form-field">
-    <label for="sifre">Şifre:</label>
-    <input id="sifre" type="text" formControlName="sifre">
-    <div class="error-message" *ngIf="isFieldInvalid('sifre')">
-      {{ getErrorMessage('sifre') }}
-    </div>
-  </div>
+      <!-- Şifre -->
+      <div class="form-field">
+        <label for="sifre" class="field-label">Şifre:</label>
+        <input type="password" class="field-input" id="sifre" formControlName="sifre" placeholder="Şifre giriniz">
+      </div>
 
-  <div class="form-field">
-    <label for="accountSekli">Account Şekli:</label>
-    <input id="accountSekli" type="text" formControlName="accountSekli">
-  </div>
+      <!-- Account Şekli -->
+      <div class="form-field">
+        <label for="accountSekli" class="field-label">Account Şekli:</label>
+        <input type="text" class="field-input" id="accountSekli" formControlName="accountSekli" placeholder="Account şeklini giriniz">
+      </div>
 
-  <div class="form-field">
-    <label for="ucretli">Ücretli:</label>
-    <input id="ucretli" type="checkbox" formControlName="ucretli">
-  </div>
+      <!-- Ücretli Checkbox -->
+      <div class="form-field checkbox-field">
+        <label class="checkbox-label">
+          <input type="checkbox" formControlName="ucretli" (change)="ucretliChanged($event)">
+          <span>Ücretli</span>
+        </label>
+      </div>
 
-  <div class="form-field" *ngIf="showKartNo">
-    <label for="kartNo">Kart No:</label>
-    <input 
-      id="kartNo" 
-      type="text" 
-      formControlName="kartNo"
-      maxlength="4"
-      placeholder="Son 4 hane">
-    <div class="hint">Sadece son 4 haneyi giriniz</div>
-  </div>
+      <!-- Periyot (Ücretli seçiliyse) -->
+      <div class="form-field" *ngIf="programForm.get('ucretli')?.value">
+        <label for="periyot" class="field-label">Periyot:</label>
+        <select class="field-input" id="periyot" formControlName="periyot">
+          <option value="">Periyot Seçin</option>
+          <option value="Aylık">Aylık</option>
+          <option value="Yıllık">Yıllık</option>
+        </select>
+      </div>
 
-  <div class="form-field">
-    <label for="bitisTarihi">Bitiş Tarihi:</label>
-    <input id="bitisTarihi" type="date" formControlName="bitisTarihi">
-  </div>
+      <!-- Kart Numarası (Ücretli seçiliyse) -->
+      <div class="form-field" *ngIf="programForm.get('ucretli')?.value">
+        <label for="kartNo" class="field-label">Kart Numarası:</label>
+        <input type="text" class="field-input" id="kartNo" formControlName="kartNo" placeholder="Kart numarasını giriniz">
+      </div>
 
-  <div class="form-field">
-    <label for="periyot">Periyot:</label>
-    <select id="periyot" formControlName="periyot" class="form-control">
-      <option value="">Periyot Seçiniz</option>
-      <option *ngFor="let option of periyotSecenekleri" [value]="option.value">
-        {{option.label}}
-      </option>
-    </select>
-    <div class="error-message" *ngIf="isFieldInvalid('periyot')">
-      {{ getErrorMessage('periyot') }}
-    </div>
-  </div>
+      <!-- Bitiş Tarihi -->
+      <div class="form-field">
+        <label for="bitisTarihi" class="field-label">Bitiş Tarihi:</label>
+        <input type="date" class="field-input" id="bitisTarihi" formControlName="bitisTarihi">
+      </div>
 
-  <button type="submit" [disabled]="!programForm.valid">Kaydet</button>
-</form>
+      <!-- Submit Button -->
+      <button type="submit" class="submit-button">
+        <span>Kaydet</span>
+      </button>
+    </form>
+  </div>
+</div>
